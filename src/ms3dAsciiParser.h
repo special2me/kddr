@@ -1,0 +1,34 @@
+#ifndef MS3DASCII_H
+#define MS3DASCII_H
+
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+
+#include "logger.h"
+#include "importer.h"
+
+class Ms3dAsciiParser : public Importer {
+	public:
+		Ms3dAsciiParser();
+		~Ms3dAsciiParser();
+
+		enum ParserState {
+			FIND_PROPERTY,
+			FRAME_TOTAL, FRAME_CURRENT, 
+			MESH_TOTAL, MESH_DATA, MESH_VERTEXTOTAL, MESH_VERTEX, 
+			MESH_NORMALTOTAL, MESH_NORMAL, MESH_TRIANGLETOTAL, MESH_TRIANGLE,
+			MATERIAL_TOTAL, MATERIAL_NAME, MATERIAL_AMBIENT, MATERIAL_DIFFUSE,
+			MATERIAL_SPECULAR, MATERIAL_EMISSIVE, MATERIAL_SHININESS,
+			MATERIAL_TRANSPARENCY, MATERIAL_COLORMAP, MATERIAL_ALPHAMAP,
+			BONE_TOTAL, BONE_NAME, BONE_PARENT, BONE_DATA, BONE_POSITIONKEYS_TOTAL,
+			BONE_POSITIONKEYS_DATA, BONE_ROTATIONKEYS_TOTAL, BONE_ROTATIONKEYS_DATA,
+			COMPLETE, NOP
+		};
+
+		bool loadMesh(const std::string &path, SceneData *scene);
+};
+
+#endif
+
