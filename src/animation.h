@@ -18,8 +18,8 @@ struct AnimationNode {
 
 class Animation : public Parsable {
 	public:
-		Animation(const std::string &path, Importer &imp) { 
-			m_FPS = 30.f;
+		Animation(const std::string &path, Importer &imp, float fps = 30.f) { 
+			m_FPS = fps;
 			m_Duration = 0.f;
 
 			readFile(path, imp);

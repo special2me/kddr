@@ -75,6 +75,8 @@ class Bone {
 
 		glm::mat4 interpolatePosition(float t);
 		glm::mat4 interpolateRotation(float t);
+
+		float getScaleFactor(float t0, float t1, float t);
 };
 
 #endif

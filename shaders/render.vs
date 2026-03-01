@@ -12,7 +12,11 @@ uniform mat4 projection;
 uniform mat4 view;
 
 void main() {
-	mat4 model = boneMatricies[boneID];
+	// mat4 model = boneMatricies[boneID];
+
+	mat4 model = mat4(1.f);
+	if (boneID >= 0) model = boneMatricies[boneID];
+
 	gl_Position = projection * view * model * vec4(aPos, 1.0);
 	normal = aNormal;
 }

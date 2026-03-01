@@ -14,7 +14,7 @@ void Animator::update(float dt) {
 void Animator::calculateBoneTransform(const AnimationNode *node, glm::mat4 parentTransform) {
 	Bone *bone = node->bone;	
 	glm::mat4 globalTransform = glm::mat4(1.f);
-	globalTransform = glm::rotate(globalTransform, glm::radians(180.f), glm::vec3(0.f, 1.f, 0.f));
+	globalTransform = glm::rotate(globalTransform, glm::radians(0.f), glm::vec3(0.f, 1.f, 0.f));
 
 	if (bone) {
 		bone->update(m_CurrentTime);

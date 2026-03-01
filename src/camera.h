@@ -4,7 +4,7 @@
 
 #define DEFAULT_POS glm::vec3(0.f, 0.f, 0.f)
 #define DEFAULT_UP glm::vec3(0.f, 1.f, 0.f)
-#define DEFAULT_YAW -90.f
+#define DEFAULT_YAW 90.f
 #define DEFAULT_PITCH 0.f
 #define DEFAULT_FRONT glm::vec3(0.f, 0.f, -1.f)
 #define DEFAULT_SPEED 10.f
@@ -12,7 +12,7 @@
 #define DEFAULT_ZOOM 45.f
 
 #define Z_NEAR 0.1f
-#define Z_FAR 100.f
+#define Z_FAR 1000.f
 
 class Camera {
 	public:

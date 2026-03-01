@@ -127,7 +127,8 @@ bool Ms3dAsciiParser::loadMesh(const std::string &path, SceneData *scene) {
 					if (!readParameter<int>(line, &boneTotal)) return false;
 					boneCount = 0;
 
-					ps = BONE_NAME;
+					if (boneTotal > 0) ps = BONE_NAME;
+					else ps = COMPLETE;
 				} else {
 					LOG_ERROR("Invalid property name \"" << label << "\" at line -- " << line);
 					return false;
@@ -294,7 +295,8 @@ bool Ms3dAsciiParser::loadMesh(const std::string &path, SceneData *scene) {
 				if (!readParameter<int>(line, &bonePositionKeysTotal)) return false;
 
 				bonePositionKeysCount = 0;
-				ps = BONE_POSITIONKEYS_DATA;
+				if (bonePositionKeysTotal > 0) ps = BONE_POSITIONKEYS_DATA;
+				else ps = BONE_ROTATIONKEYS_TOTAL;
 				break;
 
 			case BONE_POSITIONKEYS_DATA:
@@ -312,7 +314,10 @@ bool Ms3dAsciiParser::loadMesh(const std::string &path, SceneData *scene) {
 				if (!readParameter<int>(line, &boneRotationKeysTotal)) return false;
 
 				boneRotationKeysCount = 0;
-				ps = BONE_ROTATIONKEYS_DATA;
+				if (boneRotationKeysTotal > 0) ps = BONE_ROTATIONKEYS_DATA;
+				else if (boneCount >= boneTotal) ps = COMPLETE;
+				else ps = BONE_NAME;
+
 				break;
 
 			case BONE_ROTATIONKEYS_DATA:
